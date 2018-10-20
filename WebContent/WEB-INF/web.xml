@@ -6,6 +6,14 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>Bd</servlet-name>
-    <url-pattern>/</url-pattern>
+    <url-pattern>/bd</url-pattern>
   </servlet-mapping>
+ <servlet>
+    <servlet-name>EditSubtitle</servlet-name>
+    <servlet-class>com.octest.servlets.EditSubtitle</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditSubtitle</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping> 
 </web-app>

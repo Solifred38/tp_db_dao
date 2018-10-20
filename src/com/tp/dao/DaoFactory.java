@@ -36,4 +36,8 @@ public class DaoFactory {
     public UtilisateurDao getUtilisateurDao() {
         return new UtilisateurDaoImpl(this);
     }
+ // Récupération du Dao
+    public SubtitlorDao getSubtitlorDao() {
+        return new SubtitlorDaoImpl(this);
+    }
 }
