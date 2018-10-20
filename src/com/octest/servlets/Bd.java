@@ -24,7 +24,6 @@ public class Bd extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-System.out.println("Entree dans doGet avant chargement utilisateurs");
 
     	request.setAttribute("utilisateurs", utilisateurDao.lister());
         this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);

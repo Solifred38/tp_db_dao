@@ -33,19 +33,15 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 
     @Override
     public List<Utilisateur> lister() {
-System.out.println("Entree dans Lister");
         List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
         Connection connexion = null;
         Statement statement = null;
         ResultSet resultat = null;
 
         try {
-System.out.println("avant connexion");
             connexion = daoFactory.getConnection();
-System.out.println("connexion effectuée");
             statement = connexion.createStatement();
             resultat = statement.executeQuery("SELECT nom, prenom FROM noms;");
-System.out.println("requete executée");
 
             while (resultat.next()) {
                 String nom = resultat.getString("nom");
@@ -57,7 +53,6 @@ System.out.println("requete executée");
 
                 utilisateurs.add(utilisateur);
             }
-System.out.println("liste des utilisateurs chargée");
 
         } catch (SQLException e) {
             e.printStackTrace();
