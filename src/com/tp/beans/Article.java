@@ -4,6 +4,7 @@ public class Article {
     private String nom;
     private String description;
     private float prix;
+    private boolean todelete;
     
     public String getNom() {
         return nom;
@@ -27,5 +28,13 @@ public class Article {
 
 	public void setPrix(float prix) {
 		this.prix = prix;
+	}
+
+	public boolean isTodelete() {
+		return todelete;
+	}
+
+	public void setTodelete(boolean todelete) {
+		this.todelete = todelete;
 	}
 }
