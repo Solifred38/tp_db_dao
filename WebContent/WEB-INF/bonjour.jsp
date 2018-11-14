@@ -23,22 +23,25 @@
         
         <input type="submit" />
     </form>
-  <table>
-  <tr>
-  		<td> Nom </td>
-  		<td> Description </td>
-  		<td> Prix </td>
-  		<td> Supprimer </td>
-  		
-
-  <c:forEach var="article" items="${ articles }">
-  </tr>  
-            <td><c:out value="${ article.nom }" /></td>
-            <td><c:out value="${ article.description }" /></td>
-            <td><c:out value="${ article.prix }" /></td>
-            <td><input type="checkbox" value="${article.todelete}" /></td>
-  </tr>            
-  </c:forEach>
-  </table>  
+    <form method="post" action="delete">
+		  <table rules="all" style="border:solid 1px black;">
+		  <tr>
+		  		<td> Nom </td>
+		  		<td> Description </td>
+		  		<td> Prix </td>
+		  		<td> Supprimer </td>
+		  </tr>		
+		
+		  <c:forEach var="article" items="${ articles }">
+		  <tr>  
+		            <td><c:out value="${ article.nom }" /></td>
+		            <td><c:out value="${ article.description }" /></td>
+		            <td><c:out value="${ article.prix }" /></td>
+		            <td><input type="checkbox" value="${article.todelete}" /></td>
+		  </tr>            
+		  </c:forEach>
+		  </table>  
+		  <input type="submit" />
+  	</form>
 </body>
 </html>
