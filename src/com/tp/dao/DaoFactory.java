@@ -32,8 +32,8 @@ public class DaoFactory {
         return DriverManager.getConnection(url, username, password);
     }
 
-    // Récupération du Dao
-    public UtilisateurDao getUtilisateurDao() {
-        return new UtilisateurDaoImpl(this);
+    // Rï¿½cupï¿½ration du Dao
+    public ArticleDao getUtilisateurDao() {
+        return new ArticleDaoImpl(this);
     }
 }

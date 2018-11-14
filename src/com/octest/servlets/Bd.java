@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.tp.beans.Utilisateur;
+import com.tp.beans.Article;
 import com.tp.dao.*;
 
 /**
@@ -16,28 +16,28 @@ import com.tp.dao.*;
 @WebServlet("/Bd")
 public class Bd extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private UtilisateurDao utilisateurDao;
+    private ArticleDao articleDao;
 
     public void init() throws ServletException {
         DaoFactory daoFactory = DaoFactory.getInstance();
-        this.utilisateurDao = daoFactory.getUtilisateurDao();
+        this.articleDao = daoFactory.getUtilisateurDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-System.out.println("Entree dans doGet avant chargement utilisateurs");
+System.out.println("Entree dans doGet avant chargement articles");
 
-    	request.setAttribute("utilisateurs", utilisateurDao.lister());
+    	request.setAttribute("articles", articleDao.lister());
         this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
     }
 
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-        Utilisateur utilisateur = new Utilisateur();
-        utilisateur.setNom(request.getParameter("nom"));
-        utilisateur.setPrenom(request.getParameter("prenom"));
+        Article article = new Article();
+        article.setNom(request.getParameter("nom"));
+        article.setDescription(request.getParameter("description"));
+        article.setPrix(Float.parseFloat(request.getParameter("prix")));
+        articleDao.ajouter(article);
         
-        utilisateurDao.ajouter(utilisateur);
-        
-        request.setAttribute("utilisateurs", utilisateurDao.lister());
+        request.setAttribute("articles", articleDao.lister());
         
         this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
     }

@@ -9,20 +9,24 @@
 <body>
     <form method="post" action="bonjour">
         <p>
-            <label for="nom">Nom : </label>
+            <label for="nom">Article : </label>
             <input type="text" name="nom" id="nom" />
         </p>
         <p>
-            <label for="prenom">Prénom : </label>
-            <input type="text" name="prenom" id="prenom" />
+            <label for="description">Description : </label>
+            <input type="text" name="description" id="description" />
+        </p>
+        <p>
+            <label for="prix">Prix : </label>
+            <input type="text" name="prix" id="prix" />
         </p>
         
         <input type="submit" />
     </form>
     
     <ul>
-        <c:forEach var="utilisateur" items="${ utilisateurs }">
-            <li><c:out value="${ utilisateur.prenom }" /> <c:out value="${ utilisateur.nom }" /></li>
+        <c:forEach var="article" items="${ articles }">
+            <li><c:out value="${ article.nom }" /> <c:out value="${ article.description }" /><c:out value="${ article.prix }" /></li>
         </c:forEach>
     </ul>    
 </body>
