@@ -4,7 +4,16 @@ public class Article {
     private String nom;
     private String description;
     private float prix;
-    private boolean todelete;
+    private int idarticle;
+    public int getIdarticle() {
+		return idarticle;
+	}
+
+	public void setIdarticle(int idarticle) {
+		this.idarticle = idarticle;
+	}
+
+	private boolean todelete;
     
     public String getNom() {
         return nom;

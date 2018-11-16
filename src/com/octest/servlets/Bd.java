@@ -15,33 +15,36 @@ import com.tp.dao.*;
  */
 @WebServlet("/Bd")
 public class Bd extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-    private ArticleDao articleDao;
+	private static final long serialVersionUID = 1L;
+	private ArticleDao articleDao;
 
-    public void init() throws ServletException {
-        DaoFactory daoFactory = DaoFactory.getInstance();
-        this.articleDao = daoFactory.getArticleDao();
-    }
+	public void init() throws ServletException {
+		DaoFactory daoFactory = DaoFactory.getInstance();
+		this.articleDao = daoFactory.getArticleDao();
+	}
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-System.out.println("Entree dans doGet avant chargement articles");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("Entree dans doGet avant chargement articles");
 
-    	request.setAttribute("articles", articleDao.lister());
-        this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
-    }
+		request.setAttribute("articles", articleDao.lister());
+		this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
+	}
 
-    public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-        Article article = new Article();
-        article.setNom(request.getParameter("nom"));
-        article.setDescription(request.getParameter("description"));
-        article.setPrix(Float.parseFloat(request.getParameter("prix")));
-        articleDao.ajouter(article);
-        
-        request.setAttribute("articles", articleDao.lister());
-        
-        this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
-    }
-    
-    
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Article article = new Article();
+		if (request.getParameter("nom") != null && request.getParameter("nom") != "") {
+			article.setNom(request.getParameter("nom"));
+			article.setDescription(request.getParameter("description"));
+			article.setPrix(Float.parseFloat(request.getParameter("prix")));
+			articleDao.ajouter(article);
+
+			request.setAttribute("articles", articleDao.lister());
+		}
+		// examen des articles à supprimer
+
+//		this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
+		doGet(request, response);
+	}
 
 }

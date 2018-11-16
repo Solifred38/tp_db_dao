@@ -37,7 +37,7 @@
 		            <td><c:out value="${ article.nom }" /></td>
 		            <td><c:out value="${ article.description }" /></td>
 		            <td><c:out value="${ article.prix }" /></td>
-		            <td><input type="checkbox" value="${article.todelete}" /></td>
+		            <td><input type="checkbox" value="${article.todelete}"  /></td>
 		  </tr>            
 		  </c:forEach>
 		  </table>  

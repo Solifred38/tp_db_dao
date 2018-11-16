@@ -45,15 +45,17 @@ System.out.println("avant connexion");
             connexion = daoFactory.getConnection();
 System.out.println("connexion effectu�e");
             statement = connexion.createStatement();
-            resultat = statement.executeQuery("SELECT nom, description, prix FROM articles;");
+            resultat = statement.executeQuery("SELECT idarticles, nom, description, prix FROM articles;");
 System.out.println("requete execut�e");
 
             while (resultat.next()) {
+            	int idarticle = resultat.getInt("idarticles");
                 String nom = resultat.getString("nom");
                 String description = resultat.getString("description");
                 Float prix = resultat.getFloat("prix");
 
                 Article article = new Article();
+                article.setIdarticle(idarticle);
                 article.setNom(nom);
                 article.setDescription(description);
                 article.setPrix(prix);
