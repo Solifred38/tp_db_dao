@@ -8,19 +8,21 @@
 </head>
 <body>
     <form method="post" action="bonjour">
-        <p>
-            <label for="nom">Article : </label>
-            <input type="text" name="nom" id="nom" />
-        </p>
-        <p>
-            <label for="description">Description : </label>
-            <input type="text" name="description" id="description" />
-        </p>
-        <p>
-            <label for="prix">Prix : </label>
-            <input type="text" name="prix" id="prix" />
-        </p>
-        
+	    <table>
+		    <tr>
+		  		<td> Nom </td>
+		  		<td> Description </td>
+		  		<td> Prix </td>
+		  		<td> Supprimer </td>
+			</tr>	
+			<tr>
+			    <td><input type="text" name="nom" id="nom" /></td>
+			    <td><input type="text" name="description" id="description" /></td>
+			    <td><input type="text" name="prix" id="prix" /></td>
+			    <td><input type="checkbox" name="todelete" id="todelete"  /></td>
+			
+			</tr>
+	    </table>    
         <input type="submit" />
     </form>
     <form method="post" action="delete">
@@ -37,7 +39,7 @@
 		            <td><c:out value="${ article.nom }" /></td>
 		            <td><c:out value="${ article.description }" /></td>
 		            <td><c:out value="${ article.prix }" /></td>
-		            <td><input type="checkbox" value="${article.todelete}"  /></td>
+		            <td><input type="checkbox" value="${article.idarticle}" /></td>
 		  </tr>            
 		  </c:forEach>
 		  </table>  

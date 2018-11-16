@@ -1,6 +1,8 @@
 package com.octest.servlets;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,11 +39,28 @@ public class Bd extends HttpServlet {
 			article.setNom(request.getParameter("nom"));
 			article.setDescription(request.getParameter("description"));
 			article.setPrix(Float.parseFloat(request.getParameter("prix")));
+			boolean test = (request.getParameter("todelete")!=null);
+			if (test)
+			{
+				System.out.println("la checkbox a été sélectionnée");
+			}
 			articleDao.ajouter(article);
 
 			request.setAttribute("articles", articleDao.lister());
 		}
-		// examen des articles à supprimer
+		// examen des articles à supprimer à partir des id d'articles dans le Dao et la valeur de la checkbox
+		List<Article> articles = articleDao.lister();
+		for (int i = 0; i<articles.size();i++) {
+			Article localArticle = articles.get(i);
+			// on récupère les informations dans la page jsp concernant le status
+			String idcheckbox=String.valueOf(localArticle.getIdarticle());
+			boolean results = (request.getParameter(idcheckbox)!=null);
+			if (results)
+			{
+				System.out.println("la checkbox a été sélectionnée");
+			}
+		}
+		
 
 //		this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
 		doGet(request, response);
