@@ -20,7 +20,7 @@ public class Bd extends HttpServlet {
 
     public void init() throws ServletException {
         DaoFactory daoFactory = DaoFactory.getInstance();
-        this.articleDao = daoFactory.getUtilisateurDao();
+        this.articleDao = daoFactory.getArticleDao();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

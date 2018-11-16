@@ -33,7 +33,7 @@ public class DaoFactory {
     }
 
     // R�cup�ration du Dao
-    public ArticleDao getUtilisateurDao() {
+    public ArticleDao getArticleDao() {
         return new ArticleDaoImpl(this);
     }
 }

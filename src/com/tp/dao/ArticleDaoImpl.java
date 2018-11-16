@@ -34,7 +34,7 @@ public class ArticleDaoImpl implements ArticleDao {
 
     @Override
     public List<Article> lister() {
-System.out.println("Entree dans Lister");
+System.out.println("Entree dans Lister dans ArticleDaoImpl");
         List<Article> articles = new ArrayList<Article>();
         Connection connexion = null;
         Statement statement = null;
