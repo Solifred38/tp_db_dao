@@ -5,7 +5,9 @@ public class Article {
     private String description;
     private float prix;
     private int idarticle;
-    public int getIdarticle() {
+	private boolean todelete;
+
+	public int getIdarticle() {
 		return idarticle;
 	}
 
@@ -13,7 +15,6 @@ public class Article {
 		this.idarticle = idarticle;
 	}
 
-	private boolean todelete;
     
     public String getNom() {
         return nom;
