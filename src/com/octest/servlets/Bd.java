@@ -43,7 +43,7 @@ public class Bd extends HttpServlet {
 			boolean test = (request.getParameter("todelete")!=null);
 			if (test)
 			{
-				System.out.println("la checkbox a Ã©tÃ© sÃ©lectionnÃ©e");
+				System.out.println("la checkbox a été sélectionnée");
 			}
 			articleDao.ajouter(article);
 
