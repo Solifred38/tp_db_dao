@@ -52,7 +52,6 @@ public class Bd extends HttpServlet {
 		// examen des articles à supprimer à partir des id d'articles dans le Dao et la valeur de la checkbox
 		List<Article> articles = articleDao.lister();
 		for (int i = 0; i<articles.size();i++) {
-			Article localArticle = articles.get(i);
 			// on récupère les informations dans la page jsp concernant le status
 			boolean results = (request.getParameter(String.valueOf(i))!=null);
 			if (results)
