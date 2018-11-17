@@ -70,4 +70,11 @@ System.out.println("liste des articles chargés");
         return articles;
     }
 
+	@Override
+	public void supprimer(Article article) {
+		// TODO Auto-generated method stub
+		System.out.println("mon article "+article.getNom()+" est supprimé");
+		
+	}
+
 }

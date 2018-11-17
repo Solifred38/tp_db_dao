@@ -51,14 +51,18 @@ public class Bd extends HttpServlet {
 		}
 		// examen des articles à supprimer à partir des id d'articles dans le Dao et la valeur de la checkbox
 		List<Article> articles = articleDao.lister();
-		for (int i = 0; i<articles.size();i++) {
+		for (int i=articles.size()-1;i >= 0 ;i--) {
 			// on récupère les informations dans la page jsp concernant le status
 			//boolean results = (request.getParameter(String.valueOf(i))!=null);
 			String[] valeurs = request.getParameterValues(String.valueOf(i));
 
 			if ((valeurs!=null)&&(valeurs.length!=0))
 			{
+				//elements à supprimer dans la base
 				System.out.println("la checkbox "+i+" a été sélectionnée");
+				//récupération de l'article
+				Article monarticle = articles.get(i);
+				articleDao.supprimer(monarticle);
 			}
 		}
 		
