@@ -15,13 +15,13 @@
 			  		<td> Prix </td>
 			  		<td> Supprimer </td>
 			  </tr>		
-			
+			 <% int i=0; %>
 			  <c:forEach var="article" items="${ articles }">
 			  <tr>  
 			            <td><c:out value="${ article.nom }" /></td>
 			            <td><c:out value="${ article.description }" /></td>
 			            <td><c:out value="${ article.prix }" /></td>
-			            <td><input type="checkbox" value="${article.todelete}" id="${article.idarticle}" /></td>
+			            <td><input type="checkbox" value="${article.todelete}" id="<%=i++%>" /></td>
 			  </tr>            
 			  </c:forEach>
 			  <tr>

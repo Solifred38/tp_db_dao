@@ -54,8 +54,7 @@ public class Bd extends HttpServlet {
 		for (int i = 0; i<articles.size();i++) {
 			Article localArticle = articles.get(i);
 			// on récupère les informations dans la page jsp concernant le status
-			String idcheckbox=String.valueOf(localArticle.getIdarticle());
-			boolean results = (request.getParameter(idcheckbox)!=null);
+			boolean results = (request.getParameter(String.valueOf(i))!=null);
 			if (results)
 			{
 				System.out.println("la checkbox a été sélectionnée");
