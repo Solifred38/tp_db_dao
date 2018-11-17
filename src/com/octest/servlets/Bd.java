@@ -53,15 +53,16 @@ public class Bd extends HttpServlet {
 		List<Article> articles = articleDao.lister();
 		for (int i = 0; i<articles.size();i++) {
 			// on récupère les informations dans la page jsp concernant le status
-			boolean results = (request.getParameter(String.valueOf(i))!=null);
-			if (results)
+			//boolean results = (request.getParameter(String.valueOf(i))!=null);
+			String[] valeurs = request.getParameterValues(String.valueOf(i));
+
+			if ((valeurs!=null)&&(valeurs.length!=0))
 			{
-				System.out.println("la checkbox a été sélectionnée");
+				System.out.println("la checkbox "+i+" a été sélectionnée");
 			}
 		}
 		
 
-//		this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
 		doGet(request, response);
 	}
 
