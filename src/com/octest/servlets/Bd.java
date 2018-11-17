@@ -59,7 +59,6 @@ public class Bd extends HttpServlet {
 			if ((valeurs!=null)&&(valeurs.length!=0))
 			{
 				//elements à supprimer dans la base
-				System.out.println("la checkbox "+i+" a été sélectionnée");
 				//récupération de l'article
 				Article monarticle = articles.get(i);
 				articleDao.supprimer(monarticle);
