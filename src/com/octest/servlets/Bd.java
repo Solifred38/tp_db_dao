@@ -39,7 +39,7 @@ public class Bd extends HttpServlet {
 		if (request.getParameter("nom") != null && request.getParameter("nom") != "") {
 			article.setNom(request.getParameter("nom"));
 			article.setDescription(request.getParameter("description"));
-			article.setPrix(Float.parseFloat(request.getParameter("prix")));
+			if (request.getParameter("prix")!="") article.setPrix(Float.parseFloat(request.getParameter("prix")));
 			boolean test = (request.getParameter("todelete")!=null);
 			if (test)
 			{
