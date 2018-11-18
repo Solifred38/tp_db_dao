@@ -10,6 +10,10 @@
   </head>
   <body>
     <form method="post" action="bonjour">
+    <select name="magasins">
+    <option>tous</option>
+    <option>satoriz</option>
+    </select>
       <table rules="all" style="border:solid 1px black;">
         <tbody><tr><td>Nom </td><td>Description </td><td>Prix </td><td>Supprimer</td></tr><% int i=0; %>
         <c:forEach var="article" items="${ articles }">
@@ -17,7 +21,7 @@
         </td><td><c:out value="${ article.description }" />
         </td><td><c:out value="${ article.prix }" />
         </td><td><input type="checkbox" value="<%=i%>" name="<%=i++%>"></td></tr></c:forEach>
-			  <tr>
+		<tr>
         <tr><td><input id="nom" name="nom"></td><td><input id="description" name="description"></td><td><input id="prix" name="prix"></td><td><input id="todelete" type="checkbox" name="todelete"></td></tr></tbody>
       </table>
       <input type="submit" value="Soumettre la requête">
