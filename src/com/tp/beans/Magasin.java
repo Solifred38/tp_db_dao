@@ -4,6 +4,7 @@ public class Magasin {
 	private String nom;
 	private String description;
 	private int idMagasin;
+	private int idmagasin;
 	public String getNom() {
 		return nom;
 	}
@@ -21,6 +22,12 @@ public class Magasin {
 	}
 	public void setIdMagasin(int idMagasin) {
 		this.idMagasin = idMagasin;
+	}
+	public int getIdmagasin() {
+		return idmagasin;
+	}
+	public void setIdmagasin(int idmagasin) {
+		this.idmagasin = idmagasin;
 	}
 
 }
