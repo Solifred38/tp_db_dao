@@ -52,7 +52,7 @@ public class ArticleDaoImpl implements ArticleDao {
 				Float prix = resultat.getFloat("prix");
 
 				Article article = new Article();
-				article.setIdarticle(idarticle);
+				article.setIdArticle(idarticle);
 				article.setNom(nom);
 				article.setDescription(description);
 				article.setPrix(prix);
@@ -75,7 +75,7 @@ public class ArticleDaoImpl implements ArticleDao {
             connexion = daoFactory.getConnection();
             String deleteStr="DELETE FROM articles WHERE idarticles=?";
             preparedstatement = connexion.prepareStatement(deleteStr);
-            preparedstatement.setInt(1, article.getIdarticle());
+            preparedstatement.setInt(1, article.getIdArticle());
             preparedstatement.executeUpdate();
     		System.out.println("mon article "+article.getNom()+" est supprimé");
         }

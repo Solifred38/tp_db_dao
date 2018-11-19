@@ -13,10 +13,9 @@
 	<h1>Logiciel de Gestion de Courses</h1>
 	<form method="post" action="bonjour">
 		<select name="magasins">
-			<option>tous</option>
-			<option>satoriz</option>
-			<option>carrefour</option>
-			<option>casino</option>
+			<c:forEach var="magasin" items="${ magasins }">
+				<option><c:out value="${ magasin.nom }"/></option>
+			</c:forEach>
 		</select>
 		<table rules="all" style="border: solid 1px black;">
 			<tbody>

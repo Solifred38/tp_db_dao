@@ -22,9 +22,8 @@ public class MagasinDaoImpl implements MagasinDao {
 		try {
 			connexion = daoFactory.getConnection();
 			preparedStatement = connexion
-					.prepareStatement("INSERT INTO articles(nom, description) VALUES(?, ?,?);");
+					.prepareStatement("INSERT INTO articles(nom) VALUES(?, ?);");
 			preparedStatement.setString(1, magasin.getNom());
-			preparedStatement.setString(2, magasin.getDescription());
 			
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -43,17 +42,15 @@ public class MagasinDaoImpl implements MagasinDao {
 		try {
 			connexion = daoFactory.getConnection();
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery("SELECT idmagasin, nom, description FROM magasins;");
+			resultat = statement.executeQuery("SELECT id, nom FROM magasins;");
 
 			while (resultat.next()) {
-				int idmagasin = resultat.getInt("idmagasin");
+				int idmagasin = resultat.getInt("id");
 				String nom = resultat.getString("nom");
-				String description = resultat.getString("description");
 
 				Magasin magasin = new Magasin();
-				magasin.setIdmagasin(idmagasin);
+				magasin.setIdMagasin(idmagasin);
 				magasin.setNom(nom);
-				magasin.setDescription(description);
 
 				magasins.add(magasin);
 			}
@@ -65,17 +62,17 @@ public class MagasinDaoImpl implements MagasinDao {
 	}
 
 	@Override
-	public void supprimer(Magasin article) {
+	public void supprimer(Magasin magasin) {
 		// TODO Auto-generated method stub
       Connection connexion = null;
       PreparedStatement preparedstatement = null;
         try {
             connexion = daoFactory.getConnection();
-            String deleteStr="DELETE FROM articles WHERE idarticles=?";
+            String deleteStr="DELETE FROM magasins WHERE id=?";
             preparedstatement = connexion.prepareStatement(deleteStr);
-            preparedstatement.setInt(1, article.getIdmagasin());
+            preparedstatement.setInt(1, magasin.getIdMagasin());
             preparedstatement.executeUpdate();
-    		System.out.println("mon article "+article.getNom()+" est supprim�");
+    		System.out.println("mon magasin "+magasin.getNom()+" est supprim�");
         }
         catch (SQLException e) {
 			e.printStackTrace();

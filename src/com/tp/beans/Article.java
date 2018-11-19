@@ -4,15 +4,15 @@ public class Article {
     private String nom;
     private String description="";
     private float prix=0;
-    private int idarticle;
+    private int idArticle;
 	private boolean todelete;
 
-	public int getIdarticle() {
-		return idarticle;
+	public int getIdArticle() {
+		return idArticle;
 	}
 
-	public void setIdarticle(int idarticle) {
-		this.idarticle = idarticle;
+	public void setIdArticle(int idArticle) {
+		this.idArticle = idArticle;
 	}
 
     

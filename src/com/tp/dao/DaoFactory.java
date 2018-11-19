@@ -36,4 +36,8 @@ public class DaoFactory {
     public ArticleDao getArticleDao() {
         return new ArticleDaoImpl(this);
     }
+    // R�cup�ration du Dao
+    public MagasinDao getMagasinDao() {
+        return new MagasinDaoImpl(this);
+    }
 }

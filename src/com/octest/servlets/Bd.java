@@ -20,10 +20,12 @@ import com.tp.dao.*;
 public class Bd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArticleDao articleDao;
+	private MagasinDao magasinDao;
 
 	public void init() throws ServletException {
 		DaoFactory daoFactory = DaoFactory.getInstance();
 		this.articleDao = daoFactory.getArticleDao();
+		this.magasinDao= daoFactory.getMagasinDao();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -31,6 +33,7 @@ public class Bd extends HttpServlet {
 		System.out.println("Entree dans doGet avant chargement articles");
 
 		request.setAttribute("articles", articleDao.lister());
+		request.setAttribute("magasins", magasinDao.lister());
 		this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
 	}
 
