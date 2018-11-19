@@ -24,7 +24,7 @@ public class DaoFactory {
         }
         DaoFactory instance = new DaoFactory(
                 "jdbc:mysql://192.168.1.43:3307/javaee?verifyServerCertificate=false&useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true", "root", "fromager");
-        
+
         return instance;
     }
 
