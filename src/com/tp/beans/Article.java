@@ -2,8 +2,8 @@ package com.tp.beans;
 
 public class Article {
     private String nom;
-    private String description;
-    private float prix;
+    private String description="";
+    private float prix=0;
     private int idarticle;
 	private boolean todelete;
 

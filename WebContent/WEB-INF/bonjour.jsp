@@ -1,38 +1,30 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+ "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta charset="utf-8" />
-<title>Test</title>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+      <title>Gestion de courses</title>
+    </meta>
+  </head>
+  <body>
     <form method="post" action="bonjour">
-		  <table rules="all" style="border:solid 1px black;">
-			  <tr>
-			  		<td> Nom </td>
-			  		<td> Description </td>
-			  		<td> Prix </td>
-			  		<td> Supprimer </td>
-			  </tr>		
-			 <% int i=0; %>
-			  <c:forEach var="article" items="${ articles }">
-			  <tr>  
-			            <td><c:out value="${ article.nom }" /></td>
-			            <td><c:out value="${ article.description }" /></td>
-			            <td><c:out value="${ article.prix }" /></td>
-			            <td><input type="checkbox" value="<%=i%>" name="<%=i++%>" /></td>
-			  </tr>            
-			  </c:forEach>
-			  <tr>
-				    <td><input type="text" name="nom" id="nom" /></td>
-				    <td><input type="text" name="description" id="description" /></td>
-				    <td><input type="text" name="prix" id="prix" /></td>
-				    <td><input type="checkbox" name="todelete" id="todelete"  /></td>
-				
-			  </tr>
-		  </table>  
-		  <input type="submit" />
-  	</form>
-</body>
+    <select name="magasins">
+    <option>tous</option>
+    <option>satoriz</option>
+    </select>
+      <table rules="all" style="border:solid 1px black;">
+        <tbody><tr><td>Nom </td><td>Description </td><td>Prix </td><td>Supprimer</td></tr><% int i=0; %>
+        <c:forEach var="article" items="${ articles }">
+        <tr><td><c:out value="${ article.nom }" />
+        </td><td><c:out value="${ article.description }" />
+        </td><td><c:out value="${ article.prix }" />
+        </td><td><input type="checkbox" value="<%=i%>" name="<%=i++%>"></td></tr></c:forEach>
+		<tr>
+        <tr><td><input id="nom" name="nom"></td><td><input id="description" name="description"></td><td><input id="prix" name="prix"></td><td><input id="todelete" type="checkbox" name="todelete"></td></tr></tbody>
+      </table>
+      <input type="submit" value="Soumettre la requête">
+    </form>
+  </body>
 </html>

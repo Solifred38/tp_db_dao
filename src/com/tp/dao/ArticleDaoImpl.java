@@ -69,15 +69,15 @@ public class ArticleDaoImpl implements ArticleDao {
 	@Override
 	public void supprimer(Article article) {
 		// TODO Auto-generated method stub
-	      Connection connexion = null;
-	        Statement statement = null;
-	        ResultSet resultat = null;
+      Connection connexion = null;
+      PreparedStatement preparedstatement = null;
         try {
             connexion = daoFactory.getConnection();
-            statement = connexion.createStatement();
-            String deleteStr="DELETE FROM articles WHERE idarticles="+article.getIdarticle()+";";
-            resultat = statement.executeQuery(deleteStr);
-    		System.out.println("mon article "+article.getNom()+" est supprimÃ©");
+            String deleteStr="DELETE FROM articles WHERE idarticles=?";
+            preparedstatement = connexion.prepareStatement(deleteStr);
+            preparedstatement.setInt(1, article.getIdarticle());
+            preparedstatement.executeUpdate();
+    		System.out.println("mon article "+article.getNom()+" est supprimé");
         }
         catch (SQLException e) {
 			e.printStackTrace();
