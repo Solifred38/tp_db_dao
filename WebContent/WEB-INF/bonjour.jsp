@@ -4,9 +4,10 @@
  "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8" />
+<style type="text/css"><%@ include file="style.css" %> </style>
+
 <title>Gestion de courses</title>
-</meta>
 </head>
 <body>
 	<h1>Logiciel de Gestion de Courses</h1>
@@ -19,7 +20,7 @@
 		</select>
 		<table rules="all" style="border: solid 1px black;">
 			<tbody>
-				<tr>
+				<tr id="titrecolonnes">
 					<td>Nom</td>
 					<td>Description</td>
 					<td>Prix</td>
@@ -54,7 +55,7 @@
 							<option>casino</option>
 					</select></td>
 					<td><input id="todelete" type="checkbox" name="todelete"></td>
-					
+
 				</tr>
 			</tbody>
 		</table>
