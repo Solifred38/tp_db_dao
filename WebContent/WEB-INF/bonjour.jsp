@@ -6,7 +6,6 @@
 <head>
 <meta charset="utf-8" />
 <style type="text/css"><%@ include file="style.css" %> </style>
-
 <title>Gestion de courses</title>
 </head>
 <body>
@@ -33,12 +32,8 @@
 						<td><c:out value="${ article.nom }" /></td>
 						<td><c:out value="${ article.description }" /></td>
 						<td><c:out value="${ article.prix }" /></td>
-						<td><select name="magasins">
-								<option>tous</option>
-								<option>satoriz</option>
-								<option>carrefour</option>
-								<option>casino</option>
-						</select></td>
+						<td><c:out value="${ article.nomMagasin }" /> </td>
+						
 						<td><input type="checkbox" value="<%=i%>" name="<%=i++%>"></td>
 					</tr>
 				</c:forEach>
@@ -47,11 +42,10 @@
 					<td><input id="nom" name="nom"></td>
 					<td><input id="description" name="description"></td>
 					<td><input id="prix" name="prix"></td>
-					<td><select name="magasins">
-							<option>tous</option>
-							<option>satoriz</option>
-							<option>carrefour</option>
-							<option>casino</option>
+					<td><select name="choixmagasin">
+							<c:forEach var="magasin" items="${magasins }">
+								<option><c:out value="${magasin.nom}" /></option>
+							</c:forEach>
 					</select></td>
 					<td><input id="todelete" type="checkbox" name="todelete"></td>
 

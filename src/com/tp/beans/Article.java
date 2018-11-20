@@ -1,7 +1,7 @@
 package com.tp.beans;
 
 public class Article {
-    private String nom;
+    private String nom, nomMagasin;
     private String description="";
     private float prix=0;
     private int idArticle;
@@ -47,4 +47,13 @@ public class Article {
 	public void setTodelete(boolean todelete) {
 		this.todelete = todelete;
 	}
+
+	public String getNomMagasin() {
+		return nomMagasin;
+	}
+
+	public void setNomMagasin(String nomMagasin) {
+		this.nomMagasin = nomMagasin;
+	}
+
 }

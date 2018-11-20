@@ -14,17 +14,18 @@ public class ArticleDaoImpl implements ArticleDao {
 	}
 
 	@Override
-	public void ajouter(Article article) {
+	public void ajouter(Article article,String nomMagasin) {
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
 
 		try {
 			connexion = daoFactory.getConnection();
 			preparedStatement = connexion
-					.prepareStatement("INSERT INTO articles(nom, description, prix) VALUES(?, ?,?);");
+					.prepareStatement("INSERT INTO articles(nom, description, prix,nommagasin) VALUES(?, ?,?,?);");
 			preparedStatement.setString(1, article.getNom());
 			preparedStatement.setString(2, article.getDescription());
 			preparedStatement.setFloat(3, article.getPrix());
+			preparedStatement.setString(4, nomMagasin);
 
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -43,20 +44,15 @@ public class ArticleDaoImpl implements ArticleDao {
 		try {
 			connexion = daoFactory.getConnection();
 			statement = connexion.createStatement();
-			resultat = statement.executeQuery("SELECT idarticles, nom, description, prix FROM articles;");
+			resultat = statement.executeQuery("SELECT idarticles, nom, description, prix, nommagasin FROM articles;");
 
 			while (resultat.next()) {
-				int idarticle = resultat.getInt("idarticles");
-				String nom = resultat.getString("nom");
-				String description = resultat.getString("description");
-				Float prix = resultat.getFloat("prix");
-
 				Article article = new Article();
-				article.setIdArticle(idarticle);
-				article.setNom(nom);
-				article.setDescription(description);
-				article.setPrix(prix);
-
+				article.setIdArticle(resultat.getInt("idarticles"));
+				article.setNom(resultat.getString("nom"));
+				article.setDescription(resultat.getString("description"));
+				article.setPrix(resultat.getFloat("prix"));
+				article.setNomMagasin(resultat.getString("nommagasin"));
 				articles.add(article);
 			}
 
@@ -77,7 +73,7 @@ public class ArticleDaoImpl implements ArticleDao {
             preparedstatement = connexion.prepareStatement(deleteStr);
             preparedstatement.setInt(1, article.getIdArticle());
             preparedstatement.executeUpdate();
-    		System.out.println("mon article "+article.getNom()+" est supprimé");
+    		System.out.println("mon article "+article.getNom()+" est supprimï¿½");
         }
         catch (SQLException e) {
 			e.printStackTrace();
