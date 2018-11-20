@@ -32,16 +32,28 @@ public class Bd extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("Entree dans doGet avant chargement articles");
 		request.setAttribute("magasins", magasinDao.lister());
-		request.setAttribute("articles", articleDao.lister());
+		String tri=request.getParameter("trimagasins");
+		
+		if ((tri!=null)&&!tri.equals("--selectionner--"))
+		{
+			System.out.println("magasin selectionné "+tri);
+			request.setAttribute("articles", articleDao.filtrer(tri));
+		}
+		else 
+			request.setAttribute("articles", articleDao.lister());
 		this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+	// recuperer la valeur du combobox de tri
+	
+	
 		// On ajoute un article si les informations ont été rentrée sur le formulaire
 		AjouterUnArticle(request);
 		// on supprime les articles qui ont été cochés dans la table
 		SupprimerArticles(request);
+	
 		doGet(request, response);
 	}
 

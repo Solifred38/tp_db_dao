@@ -10,8 +10,9 @@
 </head>
 <body>
 	<h1>Logiciel de Gestion de Courses</h1>
-	<form method="post" action="bonjour">
-		<select name="magasins">
+	<form method="post" action="bonjour" name="f" >
+		<select name="trimagasins" onchange="javascript:document.f.action=this.value;document.f.submit()">
+		    <option>--selectionner--</option>
 			<c:forEach var="magasin" items="${ magasins }">
 				<option><c:out value="${ magasin.nom }"/></option>
 			</c:forEach>

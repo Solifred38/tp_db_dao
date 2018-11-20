@@ -79,6 +79,34 @@ public class ArticleDaoImpl implements ArticleDao {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public List<Article> filtrer(String magasin) {
+		List<Article> articles = new ArrayList<Article>();
+		Connection connexion = null;
+		Statement statement = null;
+		ResultSet resultat = null;
+
+		try {
+			connexion = daoFactory.getConnection();
+			statement = connexion.createStatement();
+			resultat = statement.executeQuery("SELECT idarticles, nom, description, prix, nommagasin FROM articles WHERE nommagasin='"+magasin+"' ;");
+
+			while (resultat.next()) {
+				Article article = new Article();
+				article.setIdArticle(resultat.getInt("idarticles"));
+				article.setNom(resultat.getString("nom"));
+				article.setDescription(resultat.getString("description"));
+				article.setPrix(resultat.getFloat("prix"));
+				article.setNomMagasin(resultat.getString("nommagasin"));
+				articles.add(article);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return articles;
+	}
 	
 
 }
