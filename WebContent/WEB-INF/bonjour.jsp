@@ -17,6 +17,8 @@
 				<option><c:out value="${ magasin.nom }"/></option>
 			</c:forEach>
 		</select>
+		<input type="button" value="Creation Magasin" />
+		
 		<table rules="all" style="border: solid 1px black;">
 			<tbody>
 				<tr id="titrecolonnes">

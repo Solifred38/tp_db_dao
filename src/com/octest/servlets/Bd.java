@@ -48,7 +48,6 @@ public class Bd extends HttpServlet {
 		
 	// recuperer la valeur du combobox de tri
 	
-	
 		// On ajoute un article si les informations ont été rentrée sur le formulaire
 		AjouterUnArticle(request);
 		// on supprime les articles qui ont été cochés dans la table
