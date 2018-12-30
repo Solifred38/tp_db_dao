@@ -24,8 +24,8 @@ public class DaoFactory {
         }
         DaoFactory instance = new DaoFactory(
                 //"jdbc:mysql://192.168.1.43:3307/javaee?verifyServerCertificate=false&useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true", "root", "fromager");
-                //"jdbc:mysql://192.168.1.54:3306/javaee?verifyServerCertificate=false&useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true", "root", "root");
-        		"jdbc:mysql://lamp_db_1:3306/javaee?verifyServerCertificate=false&useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true", "root", "root");
+                "jdbc:mysql://192.168.1.49:3306/javaee?verifyServerCertificate=false&useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true", "root", "root");
+        		//"jdbc:mysql://lamp_db_1:3306/javaee?verifyServerCertificate=false&useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true", "root", "root");
         return instance;
     }
 

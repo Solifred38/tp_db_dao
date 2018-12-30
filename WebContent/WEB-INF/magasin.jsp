@@ -8,5 +8,9 @@
 </head>
 <body>
 <h1>Creation d'un magasin</h1>
+<form method="post" action="new_magasin" name="n">
+<input type="submit" value="Nouveau Magasin" name="Nouveau_Magasin">
+
+</form>
 </body>
 </html>

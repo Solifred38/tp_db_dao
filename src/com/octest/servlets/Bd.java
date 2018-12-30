@@ -2,6 +2,7 @@ package com.octest.servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -21,6 +22,7 @@ public class Bd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ArticleDao articleDao;
 	private MagasinDao magasinDao;
+	private String Operation="";
 
 	public void init() throws ServletException {
 		DaoFactory daoFactory = DaoFactory.getInstance();
@@ -30,25 +32,40 @@ public class Bd extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("Entree dans doGet avant chargement articles");
-		request.setAttribute("magasins", magasinDao.lister());
-		String tri=request.getParameter("trimagasins");
-		
-		if ((tri!=null)&&!tri.equals("--selectionner--"))
-		{
-			System.out.println("magasin selectionné "+tri);
-			request.setAttribute("articles", articleDao.filtrer(tri));
+		// on cherche quel commit a ete effectue : creation de magasin, ajout article ...
+		 Enumeration <String> parametres = request.getParameterNames();
+	     while(parametres.hasMoreElements())
+	     {
+	         String param = parametres.nextElement();
+	         if (param.equals("Creation_Magasin")||param.equals("Requete_Principale")||param.equals("Nouveau_Magasin")) Operation=param;
+	     }
+		if (Operation.equals("")||Operation.equals("Requete_Principale")||Operation.equals("Nouveau_Magasin")) {
+			if (Operation.equals("Nouveau_Magasin"))
+				CreerMagasin();
+			System.out.println("Entree dans doGet avant chargement articles");
+			request.setAttribute("magasins", magasinDao.lister());
+			String tri=request.getParameter("filtre_magasins");
+			
+			if ((tri!=null)&&!tri.equals("--selectionner--"))
+			{
+				System.out.println("magasin selectionné "+tri);
+				request.setAttribute("articles", articleDao.filtrer(tri));
+			}
+			else 
+				request.setAttribute("articles", articleDao.lister());
+			this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
+			
 		}
-		else 
-			request.setAttribute("articles", articleDao.lister());
-		this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
+		else if (Operation.equals("Creation_Magasin")) {
+			this.getServletContext().getRequestDispatcher("/WEB-INF/magasin.jsp").forward(request, response);
+			
+		}
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	// recuperer la valeur du combobox de tri
-	
-		// On ajoute un article si les informations ont été rentrée sur le formulaire
+
+		// On ajoute un article si les informations ont ete rentree sur le formulaire
 		AjouterUnArticle(request);
 		// on supprime les articles qui ont été cochés dans la table
 		SupprimerArticles(request);
@@ -89,6 +106,9 @@ public class Bd extends HttpServlet {
 				articleDao.supprimer(monarticle);
 			}
 		}
+	}
+	void CreerMagasin() {
+		
 	}
 
 }

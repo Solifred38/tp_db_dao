@@ -11,13 +11,13 @@
 <body>
 	<h1>Logiciel de Gestion de Courses</h1>
 	<form method="post" action="bonjour" name="f" >
-		<select name="trimagasins" onchange="javascript:document.f.action=this.value;document.f.submit()">
+		<select name="filtre_magasins" onchange="javascript:document.f.action=this.value;document.f.submit()">
 		    <option>--selectionner--</option>
 			<c:forEach var="magasin" items="${ magasins }">
 				<option><c:out value="${ magasin.nom }"/></option>
 			</c:forEach>
 		</select>
-		<input type="button" value="Creation Magasin" />
+		<input type="submit" value="Creation Magasin" name="Creation_Magasin" />
 		
 		<table rules="all" style="border: solid 1px black;">
 			<tbody>
@@ -55,7 +55,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<input type="submit" value="Soumettre la requête">
+		<input type="submit" name="Requete_Principale" value="Soumettre la requête">
 	</form>
 </body>
 </html>
