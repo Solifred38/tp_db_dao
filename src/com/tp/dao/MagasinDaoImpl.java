@@ -21,7 +21,7 @@ public class MagasinDaoImpl implements MagasinDao {
 
 		try {
 			connexion = daoFactory.getConnection();
-			preparedStatement = connexion.prepareStatement("INSERT INTO articles(nom) VALUES(?, ?);");
+			preparedStatement = connexion.prepareStatement("INSERT INTO articles(nom) VALUES(?);");
 			preparedStatement.setString(1, magasin.getNom());
 			
 			preparedStatement.executeUpdate();

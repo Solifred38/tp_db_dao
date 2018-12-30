@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.tp.beans.Article;
+import com.tp.beans.Magasin;
 import com.tp.dao.*;
 
 /**
@@ -32,16 +33,7 @@ public class Bd extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// on cherche quel commit a ete effectue : creation de magasin, ajout article ...
-		 Enumeration <String> parametres = request.getParameterNames();
-	     while(parametres.hasMoreElements())
-	     {
-	         String param = parametres.nextElement();
-	         if (param.equals("Creation_Magasin")||param.equals("Requete_Principale")||param.equals("Nouveau_Magasin")) Operation=param;
-	     }
-		if (Operation.equals("")||Operation.equals("Requete_Principale")||Operation.equals("Nouveau_Magasin")) {
-			if (Operation.equals("Nouveau_Magasin"))
-				CreerMagasin();
+		if (Operation.equals("")||Operation.equals("Requete_Principale")||Operation.equals("Nouveau_Magasin")||Operation.equals("Requete_Principale_Magasins")) {
 			System.out.println("Entree dans doGet avant chargement articles");
 			request.setAttribute("magasins", magasinDao.lister());
 			String tri=request.getParameter("filtre_magasins");
@@ -56,7 +48,11 @@ public class Bd extends HttpServlet {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/bonjour.jsp").forward(request, response);
 			
 		}
-		else if (Operation.equals("Creation_Magasin")) {
+		else if (Operation.equals("Gerer_Magasins")) {
+			
+			// entree dans la gestion des magasins
+			request.setAttribute("magasins", magasinDao.lister());
+			
 			this.getServletContext().getRequestDispatcher("/WEB-INF/magasin.jsp").forward(request, response);
 			
 		}
@@ -64,6 +60,16 @@ public class Bd extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// on cherche quel commit a ete effectue : creation de magasin, ajout article ...
+		 Enumeration <String> parametres = request.getParameterNames();
+	     while(parametres.hasMoreElements())
+	     {
+	         String param = parametres.nextElement();
+	         if (param.equals("Gerer_Magasins")||param.equals("Requete_Principale")||param.equals("Requete_Principale_Magasins")) Operation=param;
+	     }
+
+		// gestion des magasins (suppression et ajout de magasin)
+		GererMagasin(request,Operation);
 
 		// On ajoute un article si les informations ont ete rentree sur le formulaire
 		AjouterUnArticle(request);
@@ -74,8 +80,8 @@ public class Bd extends HttpServlet {
 	}
 
 	void AjouterUnArticle(HttpServletRequest request) {
-		Article article = new Article();
 		if (request.getParameter("nom") != null && request.getParameter("nom") != "") {
+			Article article = new Article();
 			article.setNom(request.getParameter("nom"));
 			article.setDescription(request.getParameter("description"));
 			if (request.getParameter("prix") != "")
@@ -107,8 +113,33 @@ public class Bd extends HttpServlet {
 			}
 		}
 	}
-	void CreerMagasin() {
-		
+	void GererMagasin(HttpServletRequest request, String Operation) {
+		if (request.getParameter("nom_magasin") != null && request.getParameter("nom_magasin") != "") {
+			Magasin magasin = new Magasin();
+			magasin.setNom(request.getParameter("nom_magasin"));
+			magasinDao.ajouter(magasin);
+
+			request.setAttribute("magasins", magasinDao.lister());	
+		}
+
+		if (Operation.equals("Requete_Principale_Magasins")) {
+			// examen des articles à supprimer à partir des id d'articles dans le Dao et la
+			// valeur de la checkbox
+			List<Magasin> magasins = magasinDao.lister();
+			for (int i = magasins.size() - 1; i >= 0; i--) {
+				// on récupère les informations dans la page jsp concernant le status
+				// boolean results = (request.getParameter(String.valueOf(i))!=null);
+				String[] valeurs = request.getParameterValues(String.valueOf(i));
+
+				if ((valeurs != null) && (valeurs.length != 0)) {
+					// elements à supprimer dans la base
+					// récupération de l'article
+					Magasin monmagasin = magasins.get(i);
+					magasinDao.supprimer(monmagasin);
+				}
+			}
+			
+		}
 	}
 
 }

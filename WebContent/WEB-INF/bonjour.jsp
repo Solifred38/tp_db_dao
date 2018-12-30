@@ -17,7 +17,7 @@
 				<option><c:out value="${ magasin.nom }"/></option>
 			</c:forEach>
 		</select>
-		<input type="submit" value="Creation Magasin" name="Creation_Magasin" />
+		<input type="submit" value="Gerer Magasins" name="Gerer_Magasins" />
 		
 		<table rules="all" style="border: solid 1px black;">
 			<tbody>
