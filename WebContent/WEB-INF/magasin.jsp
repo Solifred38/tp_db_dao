@@ -4,7 +4,8 @@
  "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8" />
+<style type="text/css"><%@ include file="style.css" %> </style>
 <title>Creation de magasin</title>
 </head>
 <body>
@@ -19,7 +20,7 @@
 				<%
 					int i = 0;
 				%>
-				<c:forEach var="magasin" items="${ magasins }">
+				<c:forEach var="magasin" items="${ magasins_2 }">
 					<tr>
 						<td><c:out value="${ magasin.nom }" /></td>
 					    <td><input type="checkbox" value="<%=i%>" name="<%=i++%>"></td>

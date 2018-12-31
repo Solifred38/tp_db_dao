@@ -51,7 +51,7 @@ public class Bd extends HttpServlet {
 		else if (Operation.equals("Gerer_Magasins")) {
 			
 			// entree dans la gestion des magasins
-			request.setAttribute("magasins", magasinDao.lister());
+			request.setAttribute("magasins_2", magasinDao.lister());
 			
 			this.getServletContext().getRequestDispatcher("/WEB-INF/magasin.jsp").forward(request, response);
 			
@@ -119,7 +119,7 @@ public class Bd extends HttpServlet {
 			magasin.setNom(request.getParameter("nom_magasin"));
 			magasinDao.ajouter(magasin);
 
-			request.setAttribute("magasins", magasinDao.lister());	
+			request.setAttribute("magasins_2", magasinDao.lister());	
 		}
 
 		if (Operation.equals("Requete_Principale_Magasins")) {
