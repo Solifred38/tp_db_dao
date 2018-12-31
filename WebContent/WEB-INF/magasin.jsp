@@ -20,7 +20,7 @@
 				<%
 					int i = 0;
 				%>
-				<c:forEach var="magasin" items="${ magasins_2 }">
+				<c:forEach var="magasin" items="${ magasins }">
 					<tr>
 						<td><c:out value="${ magasin.nom }" /></td>
 					    <td><input type="checkbox" value="<%=i%>" name="<%=i++%>"></td>
